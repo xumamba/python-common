@@ -114,3 +114,98 @@
         def person(name, age, *, city='XiaMen', job):
             print(name, age, city, job)
     ```
+    - 栈溢出
+        
+        - 尾递归优化
+        - 尾递归是指,在函数返回的时候,调用自身本身,并且,return语句不能包含表达式。这样,编译器或者解释器就可以把尾递归做优化,使递归本身无论调用多少次,都只占用一个栈帧,不会出现栈溢出的情况。
+  - 高级特性
+    - 
+    - 切片
+      - 
+      - L[-2:-1]
+      - L[:10:2]   前10个元素，每两个取一个 [0,2,4,6,8]
+      - L[::5]     所有数，每5个取一个
+      - L[:]   复制list
+      - tuple切片操作结果仍是tuple
+      - 字符串也可以做切片操作，每个元素就是一个字符，结果仍是字符串
+    - 迭代
+      - 
+      - for ... in
+      - for key in dict:  for value in d.values():   for k,v in d.items():
+      - 判断是否可迭代
+      ```python
+        from collections import Iterable
+        isinstance('abc', Iterable) # str是否可迭代
+        True
+        isinstance([1,2,3], Iterable) # list是否可迭代
+        True
+        isinstance(123, Iterable) # 整数是否可迭代
+        False
+        for i, value in enumerate(['A', 'B', 'C']):
+          print(i, value)
+        0 A
+        1 B
+        2 C
+        ```
+    - 列表生成式
+      - 
+      - [x * x for x in range(1, 11)] ---> [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+      - [x * x for x in range(1, 11) if x % 2 == 0] ---> [4, 16, 36, 64, 100]
+      - [m + n for m in 'ABC' for n in 'XYZ'] ---> ['AX', 'AY', 'AZ', 'BX', 'BY', 'BZ', 'CX', 'CY', 'CZ']
+    - 生成器
+      - 
+      - 一边循环一边计算的机制,称为生成器:generator
+      - 创建generator:
+        
+        - 把一个列表生成式的 [] 改成 () 
+        - ```python
+            g = (x * x for x in range(10))
+            next(g)
+          
+            g = (x * x for x in range(10))
+            for n in g:
+              print(n)
+          ```
+         - 如果一个函数定义中包含 yield 关键字,那么这个函数就不再是一个普通函数,而是一个generator
+         - ```python
+             def fib(max):
+               n, a, b = 0, 0, 1
+               while n < max:
+                  yield b
+                  a, b = b, a + b
+                  n = n + 1
+               return 'done'
+           
+           
+             for n in fib(6):
+               print(n)
+           ```
+          - generator的函数,在每次调用 next() 的时候执行,遇到 yield 语句返回,再次执行时从上次返回的 yield 语句处继续执行。
+          - 如果想要拿到返回值,必须捕获 StopIteration 错误,返回值包含在 StopIteration 的 value 中
+          - ```python
+              g = fib(6)
+              while True:
+                 try:
+                   x = next(g)
+                   print('g:', x)
+                 except StopIteration as e:
+                   print('Generator return value:', e.value)
+                   break
+            ```
+    - 迭代器
+      -
+      - list 、 dict 、 str 等数据类型不是 Iterator
+      - list 、 dict 、 str 等 Iterable 变成 Iterator 使用 iter() 函数 isinstance(iter([]), Iterator)  --- > true
+      - Iterator 对象表示的是一个数据流,Iterator 的计算是惰性的,只有在需要返回下一个数据时它才会计算
+  - 函数式编程
+    - 
+    - [MapReduce: Simplified Data Processing on Large Clusters](http://research.google.com/archive/mapreduce.html)
+    - map() 函数接收两个参数,一个是函数,一个是 Iterable,map 将传入的函数依次作用到序列的每个元素,并把结果作为新的 Iterator 返回
+    - ```python
+       list(map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+       ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+      ```
+    - reduce() 把一个函数作用在一个序列 [x1, x2, x3, ...] 上,这个函数必须接收两个参数, reduce 把结果 继续和序列的下一个元素做累积计算
+    - reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
+    - filter()也接收一个函数和一个序列。和 map() 不同的是, filter() 把传入的函数依次作用于每个元素,然后根据返回值是 True 还是 False 决定保留还是丢弃该元素。
+    - filter返回的是一个Iterator list()
