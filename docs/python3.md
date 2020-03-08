@@ -209,3 +209,73 @@
     - reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
     - filter()也接收一个函数和一个序列。和 map() 不同的是, filter() 把传入的函数依次作用于每个元素,然后根据返回值是 True 还是 False 决定保留还是丢弃该元素。
     - filter返回的是一个Iterator list()
+    - sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower, reverse=True)
+    - 返回函数
+      - 
+      - 闭包：返回函数不要引用任何循环变量,或者后续会发生变化的变量。
+      - 关键字 lambda 表示匿名函数,冒号前面的 x 表示函数参数。
+      - ```python
+        lambda x: x * x
+        def f(x):
+           return x * x
+        ```
+      - 匿名函数有个限制,就是只能有一个表达式,不用写 return ,返回值就是该表达式的结果。
+      - 装饰器：
+         
+        - 代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator)
+        - decorator就是一个返回函数的高阶函数。
+        - ```python
+          def log(func):
+              def wrapper(*args, **kw):
+                  print('call %s():' % func.__name__)
+                  return func(*args, **kw)
+              return wrapper
+          
+          
+          import functools
+          
+          def log(text):
+            def decorator(func):
+              @functools.wraps(func)
+              def wrapper(*args, **kw):
+                print('%s %s():' % (text, func.__name__))
+                return func(*args, **kw)
+              return wrapper
+            return decorator
+          ```
+        - @decorator
+        - 偏函数：int2 = functools.partial(int, base=2)
+        - 当函数的参数个数太多,需要简化时,使用 functools.partial 可以创建一个新的函数,这个新函数可以固定住原函数的部分参数,从而在调用时更简单。
+  - 模块
+    - 
+    - 在Python中,一个.py文件就称之为一个模块(Module)
+    - [Python的所有内置函数](https://docs.python.org/3/library/functions.html)
+    - 每一个包目录下面都会有一个 init.py 的文件,这个文件是必须存在的,否则,Python就把这个目录当成普通目录,而不是一个包。
+    - init.py 可以是空文件,也可以有Python代码,因为 init.py 本身就是一个模块,而它的模块名就是包名
+    - 任何模块代码的第一个字符串都被视为模块的文档注释
+    - sys 模块有一个argv 变量,用list存储了命令行的所有参数
+    - ```python
+        if __name__ == '__main__':
+          test()
+      ```
+    - 当我们在命令行运行 hello 模块文件时,Python解释器把一个特殊变量 name 置为 main ,而如果在其他地方导入该 hello 模块时, if 判断将失败,因此,这种 if 测试可以让一个模块通过命令行运行时执行一些额外的代码,最常见的就是运行测试。
+    - 作用域  _private
+    - 第三方库都会在Python官方的[pypi.python.org](https://pypi.org/)网站注册
+    - 添加自己的搜索目录：
+      
+      - 直接修改 sys.path ,添加要搜索的目录 sys.path.append('‘)
+      - 设置环境变量 PYTHONPATH ,该环境变量的内容会被自动添加到模块搜索路径中
+  - Object Oriented Programming
+    -
+    - 如果要让内部属性不被外部访问,可以把属性的名称前加上两个下划线  python解释器  bart._Student__name
+    - Python中,变量名以双下划线开头,并且以双下划线结尾的,是特殊变量,特殊变量是可以直接访问的,不是private变量
+    - 对扩展开放，对修改封闭。
+    - type(obj)   import types
+    - 获取一个对象的所有属性和方法：dir()函数，它返回一个包含字符串的list
+    - getattr() 、 setattr() 以及 hasattr()
+    - 实例属性 和 类属性，命名注意
+    - Student.set_score = MethodType(set_score, Student)  后期绑定方法
+    - __slots__=('name','age') #用tuple定义允许绑定的属性名称
+    - slots 定义的属性仅对当前类实例起作用,对继承的子类是不起作用的
+    - 
+    
