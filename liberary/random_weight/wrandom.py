@@ -47,3 +47,5 @@ if __name__ == "__main__":
         res = list_method(test_data)
         list_result[res] += 1
     print json.dumps(list_result, ensure_ascii=False, encoding='UTF-8')
+    for i in range(10):
+        print random.choice([True, False])
