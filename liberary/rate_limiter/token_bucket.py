@@ -36,7 +36,7 @@ class TokenBucket(object):
 if __name__ == '__main__':
     token_bucket = TokenBucket(6, 6)
     for x in range(15):
-        if token_bucket.consume(2):
+        if token_bucket.consume(1):
             print 'pid:%d, execute successful at %s' % (x, time())
         else:
             sleep(1)
