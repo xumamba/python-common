@@ -274,8 +274,22 @@
     - 获取一个对象的所有属性和方法：dir()函数，它返回一个包含字符串的list
     - getattr() 、 setattr() 以及 hasattr()
     - 实例属性 和 类属性，命名注意
-    - Student.set_score = MethodType(set_score, Student)  后期绑定方法
+    - Student.set_score = MethodType(set_score, Student)  后期给class绑定方法
     - __slots__=('name','age') #用tuple定义允许绑定的属性名称
     - slots 定义的属性仅对当前类实例起作用,对继承的子类是不起作用的
+    - Python内置的 @property 装饰器就是负责把一个方法变成属性调用的
+    - MixIn 多重继承
+    - ForkingMixIn 多进程 ThreadingMixIn 多线程  CoroutineMixIn
+    - 自定义的类可以表现得和Python自带的list、tuple、dict没什么区别
+    - call() 方法,可以直接对实例进行调用
+    - callable() 函数,可以判断一个对象是否是“可调用”对象
+    - from enum import Enum
+    - Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep', 'Oct', 'Nov', 'Dec'))
+    - metaclass
+  - 错误、调试和测试
+    -
+    - Python的错误其实也是class，所有的错误类型都继承自BaseException
+    - raise 语句如果不带参数,就会把当前错误原样抛出。
+    - assert n != 0, 'n is zero!'
+    - 启动Python解释器时可以用 -O 参数来关闭 assert
     - 
-    
