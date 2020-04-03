@@ -25,7 +25,7 @@
   - 转义字符
     - \r 将光标移到一行的开始,覆盖
     - \b 退格符,将光标前移,覆盖
-  - cls
+  - mcs
     - 使用@staticmethod或@classmethod,就不需要实例化类对象，直接类名.方法名（）调用；有利于组织代码；
     - cls作为第一个参数用来表示类本身，类方法是只与类本身有关而与实例无关的方法
   - 字典中的中文乱码问题
@@ -41,12 +41,12 @@
 ```python
 # Definition for singly-linked list.
 class ListNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+    def __init__(mcs, x):
+        mcs.val = x
+        mcs.next = None
 
 class Solution(object):
-    def addTwoNumbers(self, l1, l2):
+    def addTwoNumbers(mcs, l1, l2):
         """
         :type l1: ListNode
         :type l2: ListNode
@@ -69,4 +69,6 @@ class Solution(object):
             cur_node.next = ListNode(carry)
         return dummy_head.next
 ```
+
+   - __slots__定义的属性仅对当前类实例起作用，对继承的子类是不起作用的
   

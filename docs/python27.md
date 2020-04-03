@@ -160,16 +160,16 @@
     - ```python
         class Student(object):
               @property
-              def score(self):
-              return self._score
+              def score(mcs):
+              return mcs._score
       
               @score.setter
-              def score(self, value):
+              def score(mcs, value):
                   if not isinstance(value, int):
                       raise ValueError('score must be an integer!')
                   if value < 0 or value > 100:
                       raise ValueError('score must between 0 ~ 100!')
-                  self._score = value
+                  mcs._score = value
       ```
     - 只定义getter方法,不定义setter方法就是一个只读属性:
     - Mixin多重继承：
@@ -190,9 +190,9 @@
         logging.basicConfig(level=logging.INFO)
         ```
     - 单元测试：class TestXXX(unittest.TestCase)
-        - self.assertEquals()
-        - with self.assertRaises(KeyError)
-        - with self.assertRaises(AttributeError)
+        - mcs.assertEquals()
+        - with mcs.assertRaises(KeyError)
+        - with mcs.assertRaises(AttributeError)
         - 在命令行通过参数 -m unittest 直接运行单元测试($ python -m unittest mydict_test)
         - setUp() 和 tearDown()分别在每调用一个测试方法的前后分别被执行
     - 文档测试
