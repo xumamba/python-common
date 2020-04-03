@@ -23,6 +23,7 @@ class Singleton(type):
 
 class InstanceFactory(object):
     __metaclass__ = Singleton
+    __slots__ = ()
 
     def __new__(cls, *args, **kwargs):
         print 'instance object new', args, kwargs
@@ -37,6 +38,7 @@ class InstanceFactory(object):
 
 print InstanceFactory()
 print InstanceFactory()
+
 
 # Singleton init
 # Singleton call
