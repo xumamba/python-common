@@ -5,4 +5,5 @@
 # @FileName: __init__.py
 # @Software: PyCharm
 # @GitHub  ：https://github.com/serendipity-xp
+from application.action import *
 
