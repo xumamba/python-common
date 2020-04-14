@@ -18,3 +18,5 @@ data = [1, 2]
 print add(*data)
 data = {'a': 3, 'b': 4}
 print add(**data)
+
+str()

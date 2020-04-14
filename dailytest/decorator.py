@@ -14,16 +14,17 @@ def print_log(msg):
         def pack(*args, **kw):
             print 'begin:%s %s()' % (msg, func.__name__)
             temp = func(*args, **kw)
-            print 'end:%s log' % msg
+            print 'end:%s' % func.func_code
             return temp
         return pack
     return decorator
 
 
 @print_log('message')
-def f():
+def f(field='default'):
     print '%s execute' % f.__name__
+    print f.func_code.co_varnames
 
 
 if __name__ == '__main__':
-    f()
+    f('field')
