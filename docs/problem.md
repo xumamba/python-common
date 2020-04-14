@@ -71,4 +71,5 @@ class Solution(object):
 ```
 
    - __slots__定义的属性仅对当前类实例起作用，对继承的子类是不起作用的
+   - __all__属性 由string元素组成的list变量，指定该模块可导出的类，函数，变量；且只影响from <module> import *这种方式，具体的指定导入并没有影响。
   
