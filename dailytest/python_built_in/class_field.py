@@ -20,11 +20,15 @@ class BuiltInClassField(object):
         return self.name, self.age
 
 
-print "BuiltInClassField.__module__:", BuiltInClassField.__module__
+# print "BuiltInClassField.__module__:", BuiltInClassField.__module__
 
 if __name__ == '__main__':
-    print "BuiltInClassField.__doc__:", BuiltInClassField.__doc__
-    print "BuiltInClassField.__name__:", BuiltInClassField.__name__
-    print "BuiltInClassField.__module__:", BuiltInClassField.__module__
+    print "BuiltInClassField.__doc__:", BuiltInClassField.__doc__  # 类的内置属性
+    print "BuiltInClassField.__name__:", BuiltInClassField.__name__  # BuiltInClassField
+    print "BuiltInClassField.__module__:", BuiltInClassField.__module__  # __main__
+    print "BuiltInClassField.__class__:", BuiltInClassField.__class__  # <type 'type'>  表示，BuiltInClassField类对象由 type 类创建
     print "BuiltInClassField.__bases__:", BuiltInClassField.__bases__
     print "BuiltInClassField.__dict__:", BuiltInClassField.__dict__
+    print "BuiltInClassField.__str__:", BuiltInClassField.__str__
+
+
