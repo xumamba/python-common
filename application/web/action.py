@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @DateTime: 2020/4/7 15:04
-from application.service import action_register
+from application.web.service import action_register
 
 
 @action_register(action_id=101)

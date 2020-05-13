@@ -12,8 +12,7 @@ from flask import Flask, request
 import argparse
 import logging
 from liberary.json_utils import json_utils as json
-from application.service import Service, Request
-
+from application.web.service import Service
 
 app = Flask(__name__)
 runtime_logger = logging.Logger('runtime logger')
