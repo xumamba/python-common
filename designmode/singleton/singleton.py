@@ -39,7 +39,6 @@ class InstanceFactory(object):
 print InstanceFactory()
 print InstanceFactory()
 
-
 # Singleton init
 # Singleton call
 # instance object new
