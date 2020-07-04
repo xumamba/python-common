@@ -1,1 +1,3 @@
-{}
+{
+  "yuc.py::TestDaemon::test_pop": true
+}

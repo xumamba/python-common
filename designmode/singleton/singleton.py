@@ -21,23 +21,23 @@ class Singleton(type):
         return cls.instance
 
 
-# class InstanceFactory(object):
-#     __metaclass__ = Singleton
-#     __slots__ = ()
-#
-#     def __new__(cls, *args, **kwargs):
-#         print 'instance object new', args, kwargs
-#         return object.__new__(cls)
-#
-#     def __init__(self, *args, **kwargs):
-#         print 'instance object init', args, kwargs
-#
-#     def __call__(self, *args, **kwargs):
-#         print 'instance object call'
+class InstanceFactory(object):
+    __metaclass__ = Singleton
+
+    def __new__(cls, *args, **kwargs):
+        print 'instance object new', args, kwargs
+        return object.__new__(cls)
+
+    def __init__(self, *args, **kwargs):
+        print 'instance object init', args, kwargs
+
+    def __call__(self, *args, **kwargs):
+        print 'instance object call'
 
 
-# print InstanceFactory()
-# print InstanceFactory()
+def funcName(s):
+    print '---->', s.name
+    print "---->func execute"
 
 # Singleton init
 # Singleton call
@@ -46,3 +46,10 @@ class Singleton(type):
 # <__main__.InstanceFactory object at 0x02C28210>
 # Singleton call
 # <__main__.InstanceFactory object at 0x02C28210>
+if __name__ == '__main__':
+    t = type("InstanceFactory1", (object,), {'name': 'hello', 'funcName': funcName})
+    print 'class:', t
+    t_obj = t()
+    print t_obj.name
+    print callable(t_obj.funcName)
+    print t_obj.funcName()

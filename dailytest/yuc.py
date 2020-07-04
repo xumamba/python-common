@@ -34,3 +34,16 @@ class TestDaemon(unittest.TestCase):
     def test_str(self):
         str1 = 'I love golang'
         print(str1[7])
+
+    def test_dict(self):
+        print '\ntest_dict'
+        test_dict = dict()
+        test_dict['one'] = 1
+        test_dict['two'] = {"two1": 2}
+        print test_dict
+
+    def test_coding(self):
+        u_str = u'["2"]'
+
+    def test_pop(self):
+        pass
