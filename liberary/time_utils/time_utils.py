@@ -66,24 +66,64 @@ def strToDate(strDate, split='-'):
     return date(d.tm_year, d.tm_mon, d.tm_mday)
 
 
+def str_to_timestamp(datatime_str):
+    """
+    时间转换为时间戳
+    :param datatime_str:
+    :return:
+    """
+    return time.mktime(time.strptime(datatime_str, '%Y-%m-%d %H:%M:%S'))
+
+
+def timestamp_to_str(dt):
+    """
+    转换str时间为时间戳
+    :param dt: str
+    """
+    time_struct = time.localtime(dt)
+    return time.strftime('%Y-%m-%d %H:%M:%S', time_struct)
+
+
+def datetime_to_timestamp(dt):
+    """
+    日期时间转时间戳
+    :param dt: 日期时间
+    :return: 时间戳
+    """
+    if not isinstance(dt, basestring):
+        dt = '{dt_str}'.format(dt_str=dt)
+    return int(time.mktime(time.strptime(dt, '%Y-%m-%d %H:%M:%S')))
+
+
 if __name__ == '__main__':
-    now = datetime.datetime.now()
-    start_time = get_one_day_start_time(now)
-    print start_time
-    end_time = get_one_day_end_time(now)
-    print end_time
-    a = lambda x : x != ''
-    print a('')
-    print {} , len({'l':[]})
-
-    data_value = '2020-05-11'
-    assert checkStrIsDate(data_value)
-    to_date = strToDate(data_value)
-    start_time = get_one_day_start_time(to_date)
-    print start_time
-    end_time = get_one_day_end_time(to_date)
-    print end_time
-
-    validate = lambda x: isinstance(x, list) and len(x) != 0
-    b = validate([1])
-    print b
+    # now = datetime.datetime.now()
+    # start_time = get_one_day_start_time(now)
+    # print start_time
+    # end_time = get_one_day_end_time(now)
+    # print end_time
+    # a = lambda x : x != ''
+    # print a('')
+    # print {} , len({'l':[]})
+    #
+    # data_value = '2020-05-11'
+    # assert checkStrIsDate(data_value)
+    # to_date = strToDate(data_value)
+    # start_time = get_one_day_start_time(to_date)
+    # print start_time
+    # end_time = get_one_day_end_time(to_date)
+    # print end_time
+    #
+    # validate = lambda x: isinstance(x, list) and len(x) != 0
+    # b = validate([1])
+    # print b
+    timestamp = str_to_timestamp("2020-06-17 23:59:59")
+    print timestamp
+    print timestamp_to_str(timestamp)
+    to_timestamp = datetime_to_timestamp("2020-06-17 23:59:59")
+    print to_timestamp
+    dt = datetime.datetime(2020,06,17,23,59,59)
+    print 'dt:', dt, type(dt)
+    print '{dt}'.format(dt=dt)
+    print datetime_to_timestamp('{dt}'.format(dt=dt))
+    print '================================='
+    print datetime_to_timestamp(datetime.datetime(2020, 06, 17, 23, 59, 59))

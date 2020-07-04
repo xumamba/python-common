@@ -15,6 +15,10 @@ def add_merge(list1, list2):
     return list1 + list2
 
 
+def list_judge(list1):
+    return all(x == 2 for x in list1)
+
+
 if __name__ == '__main__':
     test_l1 = [300, 303]
     test_l2 = [300, 301, 302, 303, 304, 305]
@@ -22,3 +26,6 @@ if __name__ == '__main__':
     # print result
     result = add_merge(test_l1, test_l2)
     print result
+
+    test_l3 = [2, 2, 2, 2]
+    print list_judge(test_l3)
